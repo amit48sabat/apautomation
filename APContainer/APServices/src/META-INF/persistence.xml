@@ -20,8 +20,8 @@
 		<class>com.incture.accpay.entities.GrnItemDo</class>
 		<class>com.incture.accpay.entities.GrnItemsTotalDo</class>
 		<class>com.incture.accpay.entities.InvoiceDetailDo</class>
-<!-- 		<class>com.incture.accpay.entities.InvoiceHistoryDo</class>
- -->		<class>com.incture.accpay.entities.InvoiceItemDo</class>
+ 		<class>com.incture.accpay.entities.InvoiceHistoryDo</class>
+		<class>com.incture.accpay.entities.InvoiceItemDo</class>
 		<class>com.incture.accpay.entities.InvoiceItemHistoryDo</class>
 		<class>com.incture.accpay.entities.NonPoDo</class>
 		<class>com.incture.accpay.entities.PoItemDo</class>

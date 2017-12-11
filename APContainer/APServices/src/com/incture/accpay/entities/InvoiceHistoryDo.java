@@ -1,4 +1,4 @@
-/*package com.incture.accpay.entities;
+package com.incture.accpay.entities;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -10,6 +10,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -165,7 +166,8 @@ public class InvoiceHistoryDo implements BaseDo, Serializable {
 	@Column(name = "UPDATED_BY")
 	private String userUpdated;
 	
-	@OneToMany(mappedBy = "invoiceDetailDo", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(targetEntity =InvoiceItemDo.class,cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(referencedColumnName="id")
 	private List<InvoiceItemDo> invoiceItemDo;
 
 	public BigDecimal getImportFees() {
@@ -558,4 +560,4 @@ public class InvoiceHistoryDo implements BaseDo, Serializable {
 		this.userUpdated = userUpdated;
 	}
 
-}*/
+}
