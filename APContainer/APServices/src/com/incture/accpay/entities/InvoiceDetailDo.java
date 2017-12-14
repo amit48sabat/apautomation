@@ -169,6 +169,11 @@ public class InvoiceDetailDo implements BaseDo, Serializable {
 	@OneToMany(mappedBy = "invoiceDetailDo", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(referencedColumnName="id")
 	private List<InvoiceItemDo> invoiceItemDo;
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(referencedColumnName="id")
+	private List<CommunicationLogDo>  communicationLogDos;
+
 
 	public BigDecimal getImportFees() {
 		return importFees;
@@ -558,6 +563,13 @@ public class InvoiceDetailDo implements BaseDo, Serializable {
 
 	public void setUserUpdated(String userUpdated) {
 		this.userUpdated = userUpdated;
+	}
+	public List<CommunicationLogDo> getCommunicationLogDos() {
+		return communicationLogDos;
+	}
+
+	public void setCommunicationLogDos(List<CommunicationLogDo> communicationLogDos) {
+		this.communicationLogDos = communicationLogDos;
 	}
 
 }

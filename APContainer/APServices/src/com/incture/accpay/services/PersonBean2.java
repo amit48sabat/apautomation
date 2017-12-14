@@ -24,7 +24,7 @@ public class PersonBean2 implements PersonBean2Local {
     }
     
     
-    @PersistenceContext
+    @PersistenceContext(name = "ACCOUNT_PAYEE_PU")
     private EntityManager em;
 
     /**

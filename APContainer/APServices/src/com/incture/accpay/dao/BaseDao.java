@@ -319,5 +319,20 @@ public abstract class BaseDao<E extends BaseDo, D extends BaseDto> {
 		messageUIDto.setMessage(sb.toString());
 		return messageUIDto;
 	}
+	
+
+	@SuppressWarnings("unchecked")
+	public List<D> getAllResults(String doName, Object... parameters)
+			throws NoResultFault {
+		String queryName = "SELECT p FROM " + doName + " p";
+		Query query = getEntityManager().createQuery(queryName);
+		List<E> returnList = query.getResultList();
+		if (ServicesUtil.isEmpty(returnList)) {
+			throw new NoResultFault(ServicesUtil.buildNoRecordMessage(
+					queryName, parameters));
+		}
+		System.err.println("returnList: "+returnList);
+		return exportDtoList(returnList);
+	}
 
 }

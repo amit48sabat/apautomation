@@ -15,7 +15,7 @@ import com.incture.accpay.entities.Person;
 @Stateless
 @LocalBean
 public class PersonBean {
-    @PersistenceContext
+	@PersistenceContext(name = "ACCOUNT_PAYEE_PU")
     private EntityManager em;
 
     /**
