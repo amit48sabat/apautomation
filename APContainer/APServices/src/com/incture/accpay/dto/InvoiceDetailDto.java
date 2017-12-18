@@ -113,6 +113,9 @@ public class InvoiceDetailDto extends BaseDto implements Serializable {
 	
 	private String userUpdated;
 	
+
+	private List<CommunicationLogDto> communicationLogDtos;
+	
 	public boolean isDiscrepencyFlag() {
 		return discrepencyFlag;
 	}
@@ -514,6 +517,14 @@ public class InvoiceDetailDto extends BaseDto implements Serializable {
 		super();
 	}
 
+	public List<CommunicationLogDto> getCommunicationLogDtos() {
+		return communicationLogDtos;
+	}
+
+	public void setCommunicationLogDtos(List<CommunicationLogDto> communicationLogDtos) {
+		this.communicationLogDtos = communicationLogDtos;
+	}
+
 	public void validate(EnOperation operation) throws InvalidInputFault {
 		if (id == null) // Bypass due nullable PK in ECC
 			id = ServicesUtil.SPECIAL_CHAR;
@@ -550,37 +561,26 @@ public class InvoiceDetailDto extends BaseDto implements Serializable {
 
 	@Override
 	public String toString() {
-		return "InvoiceDetailDto [Fee_percentage=" + Fee_percentage
-				+ ", Freight_percentage=" + Freight_percentage
-				+ ", abbyBatchName=" + abbyBatchName + ", abbyNetPrice="
-				+ abbyNetPrice + ", balanceAmount=" + balanceAmount
-				+ ", baseLineDate=" + baseLineDate + ", comment=" + comment
-				+ ", companyCode=" + companyCode + ", currency=" + currency
-				+ ", dateCreated=" + dateCreated + ", dateUpdated="
-				+ dateUpdated + ", deleted=" + deleted + ", deliveryDate="
-				+ deliveryDate + ", discrepencyFlag=" + discrepencyFlag
-				+ ", freight=" + freight + ", grossPrice=" + grossPrice
-				+ ", hasUnplannedCost=" + hasUnplannedCost
-				+ ", headerPatternMatchingFlag=" + headerPatternMatchingFlag
-				+ ", id=" + id + ", importFees=" + importFees
-				+ ", invoiceDate=" + invoiceDate + ", invoiceHeaderCharges="
-				+ invoiceHeaderCharges + ", invoiceItemList=" + invoiceItemList
-				+ ", invoiceNumber=" + invoiceNumber + ", mode=" + mode
-				+ ", netDiffrenceHeaderCharges=" + netDiffrenceHeaderCharges
-				+ ", paymentBlock=" + paymentBlock + ", paymentMethod="
-				+ paymentMethod + ", paymentTerms=" + paymentTerms
-				+ ", plannedCost=" + plannedCost + ", po_freight=" + po_freight
-				+ ", po_importfees=" + po_importfees + ", po_storage="
-				+ po_storage + ", po_surcharge=" + po_surcharge
-				+ ", postingDate=" + postingDate + ", purchaseOrderReference="
-				+ purchaseOrderReference + ", requestId=" + requestId
-				+ ", route=" + route + ", storage=" + storage + ", subTotal="
-				+ subTotal + ", surcharge=" + surcharge + ", taxIndicator="
-				+ taxIndicator + ", total=" + total + ", totalDiscount="
-				+ totalDiscount + ", totalInvoiceAmount=" + totalInvoiceAmount
-				+ ", userCreated=" + userCreated + ", userUpdated="
-				+ userUpdated + ", vendorId=" + vendorId + ", vendorName="
-				+ vendorName + "]";
+		return "InvoiceDetailDto [vendorName=" + vendorName + ", companyCode=" + companyCode + ", currency=" + currency
+				+ ", deliveryDate=" + deliveryDate + ", invoiceDate=" + invoiceDate + ", totalDiscount=" + totalDiscount
+				+ ", headerPatternMatchingFlag=" + headerPatternMatchingFlag + ", id=" + id + ", invoiceNumber="
+				+ invoiceNumber + ", postingDate=" + postingDate + ", purchaseOrderReference=" + purchaseOrderReference
+				+ ", requestId=" + requestId + ", route=" + route + ", subTotal=" + subTotal + ", taxIndicator="
+				+ taxIndicator + ", total=" + total + ", totalInvoiceAmount=" + totalInvoiceAmount
+				+ ", discrepencyFlag=" + discrepencyFlag + ", baseLineDate=" + baseLineDate + ", paymentTerms="
+				+ paymentTerms + ", paymentMethod=" + paymentMethod + ", paymentBlock=" + paymentBlock
+				+ ", abbyBatchName=" + abbyBatchName + ", surcharge=" + surcharge + ", plannedCost=" + plannedCost
+				+ ", invoiceHeaderCharges=" + invoiceHeaderCharges + ", netDiffrenceHeaderCharges="
+				+ netDiffrenceHeaderCharges + ", hasUnplannedCost=" + hasUnplannedCost + ", po_freight=" + po_freight
+				+ ", po_storage=" + po_storage + ", po_importfees=" + po_importfees + ", po_surcharge=" + po_surcharge
+				+ ", vendorId=" + vendorId + ", freight=" + freight + ", storage=" + storage + ", invoiceItemList="
+				+ invoiceItemList + ", comment=" + comment + ", mode=" + mode + ", importFees=" + importFees
+				+ ", Freight_percentage=" + Freight_percentage + ", Fee_percentage=" + Fee_percentage
+				+ ", abbyNetPrice=" + abbyNetPrice + ", grossPrice=" + grossPrice + ", balanceAmount=" + balanceAmount
+				+ ", deleted=" + deleted + ", dateCreated=" + dateCreated + ", dateUpdated=" + dateUpdated
+				+ ", userCreated=" + userCreated + ", userUpdated=" + userUpdated + ", communicationLogDtos="
+				+ communicationLogDtos + "]";
 	}
 
+	
 }

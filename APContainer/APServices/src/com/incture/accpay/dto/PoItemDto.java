@@ -3,6 +3,7 @@ package com.incture.accpay.dto;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 import com.incture.accpay.exception.InvalidInputFault;
 import com.incture.accpay.util.EnOperation;
@@ -80,6 +81,12 @@ public class PoItemDto extends BaseDto implements Serializable {
 	private Boolean freeItem;
 	
 	private String accountAssignCategory;
+	
+	private boolean matched;
+	
+	private List<AccountAssignmentDto> accAssignList;
+	
+	private BigDecimal accAssignCount;
 
 	public Boolean getFreeItem() {
 		return freeItem;
@@ -367,6 +374,31 @@ public class PoItemDto extends BaseDto implements Serializable {
 
 	public void setAccountAssignCategory(String accountAssignCategory) {
 		this.accountAssignCategory = accountAssignCategory;
+	}
+	public boolean isMatched() {
+		return matched;
+	}
+
+	public void setMatched(boolean matched) {
+		this.matched = matched;
+	}
+
+	public List<AccountAssignmentDto> getAccAssignList() {
+		return accAssignList;
+	}
+
+	public void setAccAssignList(List<AccountAssignmentDto> accAssignList) {
+		this.accAssignList = accAssignList;
+	}
+
+	
+
+	public BigDecimal getAccAssignCount() {
+		return accAssignCount;
+	}
+
+	public void setAccAssignCount(BigDecimal accAssignCount) {
+		this.accAssignCount = accAssignCount;
 	}
 
 	public void validate(EnOperation operation) throws InvalidInputFault {

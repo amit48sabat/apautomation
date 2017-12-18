@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns="http://xmlns.jcp.org/xml/ns/javaee" 
+xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" 
+version="3.1">
   <display-name>APRestWeb</display-name>
   
    <servlet>
@@ -11,9 +14,43 @@
 		     <param-name>com.sun.jersey.config.property.packages</param-name>
 		     <param-value> main.com.incture.accpay.contollers</param-value>
 		</init-param>
+		
+		 <init-param>  
+		    <param-name>jersey.config.server.provider.classnames</param-name>  
+		    <param-value>org.glassfish.jersey.filter.LoggingFilter;  
+		     org.glassfish.jersey.media.multipart.MultiPartFeature</param-value>  
+		</init-param>  
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	
+	
+<!-- 	<servlet>
+        <servlet-name>DocumentStoreServlet</servlet-name>
+        <servlet-class>main.com.incture.accpay.contollers.DocumentStoreServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DocumentStoreServlet</servlet-name>
+        <url-pattern>/document</url-pattern>
+    </servlet-mapping>
+
+    Servlet connecting to the document store service, requires authentication
+    <servlet>
+        <servlet-name>DocumentStoreConnectServlet</servlet-name>
+        <servlet-class>main.com.incture.accpay.contollers.DocumentStoreConnectServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DocumentStoreConnectServlet</servlet-name>
+        <url-pattern>/document/connect</url-pattern>
+    </servlet-mapping>
+ -->
+    <!-- Declare the document store service (SAP Cloud Platform document service) -->
+    <resource-ref>
+        <res-ref-name>EcmService</res-ref-name>
+        <res-type>com.sap.ecm.api.EcmService</res-type>
+    </resource-ref>
+	
+
+    
 	<servlet>
         <servlet-name>PersistenceWithEJBServlet</servlet-name>
         <servlet-class>main.com.incture.accpay.contollers.PersistenceWithEJBServlet</servlet-class>

@@ -1,6 +1,7 @@
 package com.incture.accpay.dto;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -18,11 +19,11 @@ public class DocumentDto extends BaseDto implements Serializable {
 
 	private String createdBy;
 
-	private java.util.Date createdDate;
+	private Date createdDate;
 
 	private String deletedBy;
 
-	private java.util.Date deletedDate;
+	private Date deletedDate;
 
 	private String description;
 
@@ -60,7 +61,7 @@ public class DocumentDto extends BaseDto implements Serializable {
 		this.base64 = base64;
 	}
 
-	private java.util.Date updatedDate;
+	private Date updatedDate;
 
 	public DocumentDto() {
 		super();
@@ -90,11 +91,11 @@ public class DocumentDto extends BaseDto implements Serializable {
 		this.createdBy = createdBy;
 	}
 
-	public java.util.Date getCreatedDate() {
+	public Date getCreatedDate() {
 		return createdDate;
 	}
 
-	public void setCreatedDate(java.util.Date createdDate) {
+	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
 
@@ -106,11 +107,11 @@ public class DocumentDto extends BaseDto implements Serializable {
 		this.deletedBy = deletedBy;
 	}
 
-	public java.util.Date getDeletedDate() {
+	public Date getDeletedDate() {
 		return deletedDate;
 	}
 
-	public void setDeletedDate(java.util.Date deletedDate) {
+	public void setDeletedDate(Date deletedDate) {
 		this.deletedDate = deletedDate;
 	}
 
@@ -210,11 +211,11 @@ public class DocumentDto extends BaseDto implements Serializable {
 		this.updatedBy = updatedBy;
 	}
 
-	public java.util.Date getUpdatedDate() {
+	public Date getUpdatedDate() {
 		return updatedDate;
 	}
 
-	public void setUpdatedDate(java.util.Date updatedDate) {
+	public void setUpdatedDate(Date updatedDate) {
 		this.updatedDate = updatedDate;
 	}
 

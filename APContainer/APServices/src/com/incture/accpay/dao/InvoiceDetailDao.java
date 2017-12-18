@@ -8,8 +8,10 @@ import javax.jws.WebParam;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import com.incture.accpay.dto.CommunicationLogDto;
 import com.incture.accpay.dto.InvoiceDetailDto;
 import com.incture.accpay.dto.InvoiceItemDto;
+import com.incture.accpay.entities.CommunicationLogDo;
 import com.incture.accpay.entities.InvoiceDetailDo;
 import com.incture.accpay.entities.InvoiceItemDo;
 import com.incture.accpay.exception.ExecutionFault;
@@ -24,9 +26,10 @@ public class InvoiceDetailDao extends BaseDao<InvoiceDetailDo, InvoiceDetailDto>
 	}
 
 	@Override
-	protected InvoiceDetailDo importDto(InvoiceDetailDto inputDto) throws ExecutionFault, NoResultFault, InvalidInputFault {
+	protected InvoiceDetailDo importDto(InvoiceDetailDto inputDto)
+			throws ExecutionFault, NoResultFault, InvalidInputFault {
 		InvoiceDetailDo outputDo = new InvoiceDetailDo();
-
+		outputDo.setId(inputDto.getId());
 		outputDo.setDiscrepencyFlag(inputDto.isDiscrepencyFlag());
 		outputDo.setHasUnplannedCost(inputDto.isHasUnplannedCost());
 		outputDo.setInvoiceHeaderCharges(inputDto.getInvoiceHeaderCharges());
@@ -54,7 +57,8 @@ public class InvoiceDetailDao extends BaseDao<InvoiceDetailDo, InvoiceDetailDto>
 		outputDo.setSubTotal(inputDto.getSubTotal());
 		outputDo.setTaxIndicator(inputDto.getTaxIndicator());
 		outputDo.setTotal((ServicesUtil.nullHandler(inputDto.getTotal())).setScale(2, RoundingMode.HALF_UP));
-		outputDo.setTotalInvoiceAmount((ServicesUtil.nullHandler(inputDto.getTotalInvoiceAmount())).setScale(2, RoundingMode.HALF_UP));
+		outputDo.setTotalInvoiceAmount(
+				(ServicesUtil.nullHandler(inputDto.getTotalInvoiceAmount())).setScale(2, RoundingMode.HALF_UP));
 		outputDo.setVendorId(inputDto.getVendorId());
 		outputDo.setPaymentBlock(inputDto.getPaymentBlock());
 		outputDo.setPaymentMethod(inputDto.getPaymentMethod());
@@ -83,12 +87,22 @@ public class InvoiceDetailDao extends BaseDao<InvoiceDetailDo, InvoiceDetailDto>
 			}
 			outputDo.setInvoiceItemDo(doList);
 		}
+
+		if (!ServicesUtil.isEmpty(inputDto.getCommunicationLogDtos())) {
+			List<CommunicationLogDo> communicationLogDos = new ArrayList<CommunicationLogDo>();
+			CommunicationLogDao communicationLogDao = new CommunicationLogDao(super.getEntityManager());
+			for (CommunicationLogDto communicationLogDto : inputDto.getCommunicationLogDtos()) {
+				communicationLogDos.add(communicationLogDao.importDto(communicationLogDto));
+			}
+			outputDo.setCommunicationLogDos(communicationLogDos);
+		}
 		return outputDo;
 	}
 
 	@Override
 	public InvoiceDetailDto exportDto(InvoiceDetailDo inputDo) {
 		InvoiceDetailDto outputDto = new InvoiceDetailDto();
+		outputDto.setId(inputDo.getId());
 		outputDto.setVendorName(inputDo.getVendorName());
 		outputDto.setCompanyCode(inputDo.getCompanyCode());
 		outputDto.setCurrency(inputDo.getCurrency());
@@ -109,7 +123,8 @@ public class InvoiceDetailDao extends BaseDao<InvoiceDetailDo, InvoiceDetailDto>
 		outputDto.setSubTotal(inputDo.getSubTotal());
 		outputDto.setTaxIndicator(inputDo.getTaxIndicator());
 		outputDto.setTotal((ServicesUtil.nullHandler(inputDo.getTotal())).setScale(2, RoundingMode.HALF_UP));
-		outputDto.setTotalInvoiceAmount((ServicesUtil.nullHandler(inputDo.getTotalInvoiceAmount())).setScale(2, RoundingMode.HALF_UP));
+		outputDto.setTotalInvoiceAmount(
+				(ServicesUtil.nullHandler(inputDo.getTotalInvoiceAmount())).setScale(2, RoundingMode.HALF_UP));
 		outputDto.setPaymentBlock(inputDo.getPaymentBlock());
 		outputDto.setPaymentMethod(inputDo.getPaymentMethod());
 		outputDto.setPaymentTerms(inputDo.getPaymentTerms());
@@ -145,6 +160,15 @@ public class InvoiceDetailDao extends BaseDao<InvoiceDetailDo, InvoiceDetailDto>
 			}
 			outputDto.setInvoiceItemList(invItemList);
 		}
+
+		if (!ServicesUtil.isEmpty(inputDo.getCommunicationLogDos())) {
+			List<CommunicationLogDto> communicationLogDtos = new ArrayList<CommunicationLogDto>();
+			CommunicationLogDao communicationLogDao = new CommunicationLogDao(super.getEntityManager());
+			for (CommunicationLogDo communicationLogDo : inputDo.getCommunicationLogDos()) {
+				communicationLogDtos.add(communicationLogDao.exportDto(communicationLogDo));
+			}
+			outputDto.setCommunicationLogDtos(communicationLogDtos);
+		}
 		return outputDto;
 	}
 
@@ -152,7 +176,8 @@ public class InvoiceDetailDao extends BaseDao<InvoiceDetailDo, InvoiceDetailDto>
 	public InvoiceDetailDto getInvDetailRequestNumber(@WebParam(name = "requestID") String requestID) {
 
 		InvoiceDetailDto invDto = new InvoiceDetailDto();
-		javax.persistence.Query query = super.getEntityManager().createQuery("select v from InvoiceDetailDo v where v.requestId=:requestID");
+		javax.persistence.Query query = super.getEntityManager()
+				.createQuery("select v from InvoiceDetailDo v where v.requestId=:requestID");
 		query.setParameter("requestID", requestID);
 
 		List<InvoiceDetailDo> list = query.getResultList();
@@ -165,8 +190,8 @@ public class InvoiceDetailDao extends BaseDao<InvoiceDetailDo, InvoiceDetailDto>
 	@SuppressWarnings("unchecked")
 	public InvoiceDetailDto getCmpnyCodeVendorId(String requestId) {
 
-		Query query = super.getEntityManager()
-				.createQuery("SELECT DISTINCT v.companyCode, v.vendorId FROM InvoiceDetailDo v WHERE v.requestId =:requestID");
+		Query query = super.getEntityManager().createQuery(
+				"SELECT DISTINCT v.companyCode, v.vendorId FROM InvoiceDetailDo v WHERE v.requestId =:requestID");
 		query.setParameter("requestID", requestId);
 
 		List<Object[]> resultList = new ArrayList<Object[]>();

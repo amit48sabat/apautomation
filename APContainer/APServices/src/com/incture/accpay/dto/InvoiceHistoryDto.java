@@ -21,9 +21,9 @@ public class InvoiceHistoryDto extends BaseDto implements Serializable {
 
 	private String currency;
 
-	private java.util.Date deliveryDate;
+	private Date deliveryDate;
 
-	private java.util.Date invoiceDate;
+	private Date invoiceDate;
 
 	private BigDecimal totalDiscount;
 
@@ -102,13 +102,13 @@ public class InvoiceHistoryDto extends BaseDto implements Serializable {
 	private BigDecimal balanceAmount;
 
 	private boolean deleted;
-	
+
 	private Date dateCreated;
-	
+
 	private Date dateUpdated;
-	
+
 	private String userCreated;
-	
+
 	private String userUpdated;
 
 	public boolean isDiscrepencyFlag() {
@@ -139,8 +139,7 @@ public class InvoiceHistoryDto extends BaseDto implements Serializable {
 		return netDiffrenceHeaderCharges;
 	}
 
-	public void setNetDiffrenceHeaderCharges(
-			BigDecimal netDiffrenceHeaderCharges) {
+	public void setNetDiffrenceHeaderCharges(BigDecimal netDiffrenceHeaderCharges) {
 		this.netDiffrenceHeaderCharges = netDiffrenceHeaderCharges;
 	}
 
@@ -224,11 +223,11 @@ public class InvoiceHistoryDto extends BaseDto implements Serializable {
 		this.totalDiscount = totalDiscount;
 	}
 
-	public java.util.Date getInvoiceDate() {
+	public Date getInvoiceDate() {
 		return invoiceDate;
 	}
 
-	public void setInvoiceDate(java.util.Date invoiceDate) {
+	public void setInvoiceDate(Date invoiceDate) {
 		this.invoiceDate = invoiceDate;
 	}
 
@@ -256,11 +255,11 @@ public class InvoiceHistoryDto extends BaseDto implements Serializable {
 		this.storage = storage;
 	}
 
-	public java.util.Date getBaseLineDate() {
+	public Date getBaseLineDate() {
 		return baseLineDate;
 	}
 
-	public void setBaseLineDate(java.util.Date baseLineDate) {
+	public void setBaseLineDate(Date baseLineDate) {
 		this.baseLineDate = baseLineDate;
 	}
 
@@ -332,11 +331,11 @@ public class InvoiceHistoryDto extends BaseDto implements Serializable {
 		this.currency = currency;
 	}
 
-	public java.util.Date getDeliveryDate() {
+	public Date getDeliveryDate() {
 		return deliveryDate;
 	}
 
-	public void setDeliveryDate(java.util.Date deliveryDate) {
+	public void setDeliveryDate(Date deliveryDate) {
 		this.deliveryDate = deliveryDate;
 	}
 
@@ -364,11 +363,11 @@ public class InvoiceHistoryDto extends BaseDto implements Serializable {
 		this.invoiceNumber = invoiceNumber;
 	}
 
-	public java.util.Date getPostingDate() {
+	public Date getPostingDate() {
 		return postingDate;
 	}
 
-	public void setPostingDate(java.util.Date postingDate) {
+	public void setPostingDate(Date postingDate) {
 		this.postingDate = postingDate;
 	}
 
@@ -471,7 +470,6 @@ public class InvoiceHistoryDto extends BaseDto implements Serializable {
 	public void setDeleted(boolean deleted) {
 		this.deleted = deleted;
 	}
-	
 
 	public Date getDateCreated() {
 		return dateCreated;
@@ -511,66 +509,44 @@ public class InvoiceHistoryDto extends BaseDto implements Serializable {
 		if (operation != EnOperation.RETRIEVE) {
 			enforceMandatory("InvoiceDetail.id", id);
 		}
-		vendorName = checkStringSize("InvoiceDetail.vendorName", vendorName,
-				250);
-		companyCode = checkStringSize("InvoiceDetail.companyCode", companyCode,
-				10);
+		vendorName = checkStringSize("InvoiceDetail.vendorName", vendorName, 250);
+		companyCode = checkStringSize("InvoiceDetail.companyCode", companyCode, 10);
 		currency = checkStringSize("InvoiceDetail.currency", currency, 10);
-		headerPatternMatchingFlag = checkStringSize(
-				"InvoiceDetail.headerPatternMatchingFlag",
+		headerPatternMatchingFlag = checkStringSize("InvoiceDetail.headerPatternMatchingFlag",
 				headerPatternMatchingFlag, 30);
 		id = checkStringSize("InvoiceDetail.id", id, 40);
-		invoiceNumber = checkStringSize("InvoiceDetail.invoiceNumber",
-				invoiceNumber, 30);
-		purchaseOrderReference = checkStringSize(
-				"InvoiceDetail.purchaseOrderReference", purchaseOrderReference,
-				30);
+		invoiceNumber = checkStringSize("InvoiceDetail.invoiceNumber", invoiceNumber, 30);
+		purchaseOrderReference = checkStringSize("InvoiceDetail.purchaseOrderReference", purchaseOrderReference, 30);
 		requestId = checkStringSize("InvoiceDetail.requestId", requestId, 40);
 		route = checkStringSize("InvoiceDetail.route", route, 10);
-		taxIndicator = checkStringSize("InvoiceDetail.taxIndicator",
-				taxIndicator, 30);
+		taxIndicator = checkStringSize("InvoiceDetail.taxIndicator", taxIndicator, 30);
 		vendorId = checkStringSize("InvoiceDetail.vendorId", vendorId, 10);
-		paymentTerms = checkStringSize("InvoiceDetail.paymentTerms",
-				paymentTerms, 40);
-		paymentBlock = checkStringSize("InvoiceDetail.paymentBlock",
-				paymentBlock, 40);
-		paymentMethod = checkStringSize("InvoiceDetail.paymentMethod",
-				paymentMethod, 40);
+		paymentTerms = checkStringSize("InvoiceDetail.paymentTerms", paymentTerms, 40);
+		paymentBlock = checkStringSize("InvoiceDetail.paymentBlock", paymentBlock, 40);
+		paymentMethod = checkStringSize("InvoiceDetail.paymentMethod", paymentMethod, 40);
 
 	}
 
 	@Override
 	public String toString() {
-		return "InvoiceHistoryDto [Fee_percentage=" + Fee_percentage
-				+ ", Freight_percentage=" + Freight_percentage
-				+ ", abbyNetPrice=" + abbyNetPrice + ", balanceAmount="
-				+ balanceAmount + ", baseLineDate=" + baseLineDate
-				+ ", comment=" + comment + ", companyCode=" + companyCode
-				+ ", currency=" + currency + ", dateCreated=" + dateCreated
-				+ ", dateUpdated=" + dateUpdated + ", deleted=" + deleted
-				+ ", deliveryDate=" + deliveryDate + ", discrepencyFlag="
-				+ discrepencyFlag + ", freight=" + freight + ", grossPrice="
-				+ grossPrice + ", hasUnplannedCost=" + hasUnplannedCost
-				+ ", headerPatternMatchingFlag=" + headerPatternMatchingFlag
-				+ ", id=" + id + ", importFees=" + importFees
-				+ ", invoiceDate=" + invoiceDate + ", invoiceHeaderCharges="
-				+ invoiceHeaderCharges + ", invoiceItemList=" + invoiceItemList
-				+ ", invoiceNumber=" + invoiceNumber + ", mode=" + mode
-				+ ", netDiffrenceHeaderCharges=" + netDiffrenceHeaderCharges
-				+ ", paymentBlock=" + paymentBlock + ", paymentMethod="
-				+ paymentMethod + ", paymentTerms=" + paymentTerms
-				+ ", plannedCost=" + plannedCost + ", po_freight=" + po_freight
-				+ ", po_importfees=" + po_importfees + ", po_storage="
-				+ po_storage + ", po_surcharge=" + po_surcharge
-				+ ", postingDate=" + postingDate + ", purchaseOrderReference="
-				+ purchaseOrderReference + ", requestId=" + requestId
-				+ ", route=" + route + ", storage=" + storage + ", subTotal="
-				+ subTotal + ", surcharge=" + surcharge + ", taxIndicator="
-				+ taxIndicator + ", total=" + total + ", totalDiscount="
-				+ totalDiscount + ", totalInvoiceAmount=" + totalInvoiceAmount
-				+ ", userCreated=" + userCreated + ", userUpdated="
-				+ userUpdated + ", vendorId=" + vendorId + ", vendorName="
-				+ vendorName + "]";
+		return "InvoiceHistoryDto [Fee_percentage=" + Fee_percentage + ", Freight_percentage=" + Freight_percentage
+				+ ", abbyNetPrice=" + abbyNetPrice + ", balanceAmount=" + balanceAmount + ", baseLineDate="
+				+ baseLineDate + ", comment=" + comment + ", companyCode=" + companyCode + ", currency=" + currency
+				+ ", dateCreated=" + dateCreated + ", dateUpdated=" + dateUpdated + ", deleted=" + deleted
+				+ ", deliveryDate=" + deliveryDate + ", discrepencyFlag=" + discrepencyFlag + ", freight=" + freight
+				+ ", grossPrice=" + grossPrice + ", hasUnplannedCost=" + hasUnplannedCost
+				+ ", headerPatternMatchingFlag=" + headerPatternMatchingFlag + ", id=" + id + ", importFees="
+				+ importFees + ", invoiceDate=" + invoiceDate + ", invoiceHeaderCharges=" + invoiceHeaderCharges
+				+ ", invoiceItemList=" + invoiceItemList + ", invoiceNumber=" + invoiceNumber + ", mode=" + mode
+				+ ", netDiffrenceHeaderCharges=" + netDiffrenceHeaderCharges + ", paymentBlock=" + paymentBlock
+				+ ", paymentMethod=" + paymentMethod + ", paymentTerms=" + paymentTerms + ", plannedCost=" + plannedCost
+				+ ", po_freight=" + po_freight + ", po_importfees=" + po_importfees + ", po_storage=" + po_storage
+				+ ", po_surcharge=" + po_surcharge + ", postingDate=" + postingDate + ", purchaseOrderReference="
+				+ purchaseOrderReference + ", requestId=" + requestId + ", route=" + route + ", storage=" + storage
+				+ ", subTotal=" + subTotal + ", surcharge=" + surcharge + ", taxIndicator=" + taxIndicator + ", total="
+				+ total + ", totalDiscount=" + totalDiscount + ", totalInvoiceAmount=" + totalInvoiceAmount
+				+ ", userCreated=" + userCreated + ", userUpdated=" + userUpdated + ", vendorId=" + vendorId
+				+ ", vendorName=" + vendorName + "]";
 	}
 
 }

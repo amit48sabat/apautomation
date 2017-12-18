@@ -1,12 +1,9 @@
 package com.incture.accpay.entities;
 
 import java.io.Serializable;
-import java.lang.String;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.TableGenerator;
 
 /**
@@ -23,7 +20,7 @@ public class CodHistoryHeaderDoPK implements Serializable {
 	@Column(name = "VENDOR_ID", length = 10)
 	private String vendorId;
 
-	@GeneratedValue(strategy = GenerationType.TABLE, generator = "APASequenceNumber")
+	//@GeneratedValue(strategy = GenerationType.TABLE, generator = "APASequenceNumber")
 	@Column(name = "TEMPLATE_NO", length = 25)
 	private String templateNo;
 	

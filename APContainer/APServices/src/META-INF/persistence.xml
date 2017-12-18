@@ -28,8 +28,7 @@
 		<class>com.incture.accpay.entities.PurchaseOrderDo</class>
 		<class>com.incture.accpay.entities.RequestDo</class>
 		<class>com.incture.accpay.entities.RequestHistoryDo</class>
-		<class>com.incture.accpay.entities.SequenceNumber</class>
-		<class>com.incture.accpay.entities.SmSeqNumber</class>	
+		<class>com.incture.accpay.entities.APSmSeqNumberDo</class>
 		<class>com.incture.accpay.entities.UserPreferenceColumnsDo</class>
 
 		<properties>

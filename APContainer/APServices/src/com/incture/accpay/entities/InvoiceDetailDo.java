@@ -9,18 +9,23 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
+@TableGenerator(name="INV_DET_GEN", initialValue=1, allocationSize=50)
 @Table(name = "AP_INVOICE_DETAIL")
 public class InvoiceDetailDo implements BaseDo, Serializable {
 	public static final long serialVersionUID = -3248578168688762316L;
 
+	
 	@Column(name = "VENDOR_NAME", length = 250)
 	private String vendorName;
 
@@ -72,9 +77,11 @@ public class InvoiceDetailDo implements BaseDo, Serializable {
 	private String headerPatternMatchingFlag;
 
 	@Id
+	 @GeneratedValue(strategy=GenerationType.TABLE, generator="INV_DET_GEN")
 	@Column(name = "ID", length = 40, nullable = false)
 	private String id;
 
+	
 	@Column(name = "INVOICE_NUMBER", length = 30)
 	private String invoiceNumber;
 
@@ -171,8 +178,10 @@ public class InvoiceDetailDo implements BaseDo, Serializable {
 	private List<InvoiceItemDo> invoiceItemDo;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(referencedColumnName="id")
 	private List<CommunicationLogDo>  communicationLogDos;
+	
+	@Column(name = "PROCESS_ID")
+	private String processId;
 
 
 	public BigDecimal getImportFees() {
@@ -570,6 +579,14 @@ public class InvoiceDetailDo implements BaseDo, Serializable {
 
 	public void setCommunicationLogDos(List<CommunicationLogDo> communicationLogDos) {
 		this.communicationLogDos = communicationLogDos;
+	}
+
+	public String getProcessId() {
+		return processId;
+	}
+
+	public void setProcessId(String processId) {
+		this.processId = processId;
 	}
 
 }

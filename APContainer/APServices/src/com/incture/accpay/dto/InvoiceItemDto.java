@@ -112,8 +112,25 @@ public class InvoiceItemDto extends BaseDto implements Serializable {
 	private String vendorMaterialId;
 
 	private boolean deleted;
-	
+
 	private Boolean threewayMatchingFlag;
+
+	private String upcToMaterial;
+
+	private String poOrderUnit;
+
+	private Boolean freeItem;
+
+	private BigDecimal priceUnit;
+
+	private boolean partialPosting;
+	
+	private List<AccountAssignmentDto> accAssignList;
+	
+	private BigDecimal accAssignCount;
+	
+	private String poHeaderId;
+
 
 	public BigDecimal getLineNo() {
 		return lineNo;
@@ -391,7 +408,6 @@ public class InvoiceItemDto extends BaseDto implements Serializable {
 		return userCreated;
 	}
 
-	
 	public void setUserCreated(Date userCreated) {
 		this.userCreated = userCreated;
 	}
@@ -508,6 +524,72 @@ public class InvoiceItemDto extends BaseDto implements Serializable {
 		super();
 	}
 
+	public String getUpcToMaterial() {
+		return upcToMaterial;
+	}
+
+	public void setUpcToMaterial(String upcToMaterial) {
+		this.upcToMaterial = upcToMaterial;
+	}
+
+	public String getPoOrderUnit() {
+		return poOrderUnit;
+	}
+
+	public void setPoOrderUnit(String poOrderUnit) {
+		this.poOrderUnit = poOrderUnit;
+	}
+
+	public Boolean getFreeItem() {
+		return freeItem;
+	}
+
+	public void setFreeItem(Boolean freeItem) {
+		this.freeItem = freeItem;
+	}
+
+	public BigDecimal getPriceUnit() {
+		return priceUnit;
+	}
+
+	public void setPriceUnit(BigDecimal priceUnit) {
+		this.priceUnit = priceUnit;
+	}
+
+	public boolean isPartialPosting() {
+		return partialPosting;
+	}
+
+	public void setPartialPosting(boolean partialPosting) {
+		this.partialPosting = partialPosting;
+	}
+
+	
+
+	public List<AccountAssignmentDto> getAccAssignList() {
+		return accAssignList;
+	}
+
+	public void setAccAssignList(List<AccountAssignmentDto> accAssignList) {
+		this.accAssignList = accAssignList;
+	}
+
+	public BigDecimal getAccAssignCount() {
+		return accAssignCount;
+	}
+
+	public void setAccAssignCount(BigDecimal accAssignCount) {
+		this.accAssignCount = accAssignCount;
+	}
+
+	public String getPoHeaderId() {
+		return poHeaderId;
+	}
+
+	public void setPoHeaderId(String poHeaderId) {
+		this.poHeaderId = poHeaderId;
+	}
+
 	public void validate(EnOperation operation) throws InvalidInputFault {
 		if (id == null) // Bypass due nullable PK in ECC
 			id = ServicesUtil.SPECIAL_CHAR;
@@ -515,59 +597,40 @@ public class InvoiceItemDto extends BaseDto implements Serializable {
 			enforceMandatory("InvoiceItem.id", id);
 		}
 		id = checkStringSize("InvoiceItem.id", id, 40);
-		invHeaderId = checkStringSize("InvoiceItem.invHeaderId", invHeaderId,
-				40);
-		materialDescription = checkStringSize(
-				"InvoiceItem.materialDescription", materialDescription, 255);
-		poMatchingItemNoId = checkStringSize("InvoiceItem.poMatchingItemNoId",
-				poMatchingItemNoId, 40);
-		poMatchingNoId = checkStringSize("InvoiceItem.poMatchingNoId",
-				poMatchingNoId, 40);
+		invHeaderId = checkStringSize("InvoiceItem.invHeaderId", invHeaderId, 40);
+		materialDescription = checkStringSize("InvoiceItem.materialDescription", materialDescription, 255);
+		poMatchingItemNoId = checkStringSize("InvoiceItem.poMatchingItemNoId", poMatchingItemNoId, 40);
+		poMatchingNoId = checkStringSize("InvoiceItem.poMatchingNoId", poMatchingNoId, 40);
 		uom = checkStringSize("InvoiceItem.uom", uom, 100);
 		upcCode = checkStringSize("InvoiceItem.upcCode", upcCode, 100);
 		comment = checkStringSize("InvoiceItem.comment", comment, 500);
 		mode = checkStringSize("InvoiceItem.mode", mode, 20);
-		matchingPonumber = checkStringSize("InvoiceItem.matchingPonumber",
-				matchingPonumber, 10);
+		matchingPonumber = checkStringSize("InvoiceItem.matchingPonumber", matchingPonumber, 10);
 		material = checkStringSize("InvoiceItem.material", material, 20);
-		VendorMaterial = checkStringSize("InvoiceItem.VendorMaterial",
-				VendorMaterial, 100);
-	}
-	
-	@Override
-	public String toString() {
-		return "InvoiceItemDto [VendorMaterial=" + VendorMaterial
-				+ ", amountDifference=" + amountDifference + ", comment="
-				+ comment + ", dateCreated=" + dateCreated + ", dateUpdated="
-				+ dateUpdated + ", deleted=" + deleted
-				+ ", descriptionMismatchFlag=" + descriptionMismatchFlag
-				+ ", discountValue=" + discountValue + ", glCoding=" + glCoding
-				+ ", hasErrorFlag=" + hasErrorFlag + ", hasSomeGrFlag="
-				+ hasSomeGrFlag + ", headercharges=" + headercharges + ", id="
-				+ id + ", invHeaderId=" + invHeaderId + ", invoiceDetailDto="
-				+ invoiceDetailDto + ", invoiceItemId=" + invoiceItemId
-				+ ", invoicePONumber=" + invoicePONumber + ", lineNo=" + lineNo
-				+ ", matchingPonumber=" + matchingPonumber + ", material="
-				+ material + ", materialDescription=" + materialDescription
-				+ ", materialLine=" + materialLine + ", mode=" + mode
-				+ ", netPrice=" + netPrice + ", netWorth=" + netWorth
-				+ ", nonpoList=" + nonpoList + ", partialPost=" + partialPost
-				+ ", poMatchingItemNoId=" + poMatchingItemNoId
-				+ ", poMatchingNoId=" + poMatchingNoId + ", poNumber="
-				+ poNumber + ", poPrice=" + poPrice + ", poQuantity="
-				+ poQuantity + ", poUpcCode=" + poUpcCode + ", quantity="
-				+ quantity + ", quantityBaseUom=" + quantityBaseUom
-				+ ", quantityMismatchFlag=" + quantityMismatchFlag
-				+ ", requestId=" + requestId + ", threewayMatchingFlag="
-				+ threewayMatchingFlag + ", twowayMatchingFlag="
-				+ twowayMatchingFlag + ", unitPrice=" + unitPrice
-				+ ", unitPriceMismatchFlag=" + unitPriceMismatchFlag + ", uom="
-				+ uom + ", upcCode=" + upcCode + ", upscMismatchFlag="
-				+ upscMismatchFlag + ", userCreated=" + userCreated
-				+ ", userUpdated=" + userUpdated + ", vatValue=" + vatValue
-				+ ", vendorMaterialId=" + vendorMaterialId + "]";
+		VendorMaterial = checkStringSize("InvoiceItem.VendorMaterial", VendorMaterial, 100);
 	}
 
+	@Override
+	public String toString() {
+		return "InvoiceItemDto [VendorMaterial=" + VendorMaterial + ", amountDifference=" + amountDifference
+				+ ", comment=" + comment + ", dateCreated=" + dateCreated + ", dateUpdated=" + dateUpdated
+				+ ", deleted=" + deleted + ", descriptionMismatchFlag=" + descriptionMismatchFlag + ", discountValue="
+				+ discountValue + ", glCoding=" + glCoding + ", hasErrorFlag=" + hasErrorFlag + ", hasSomeGrFlag="
+				+ hasSomeGrFlag + ", headercharges=" + headercharges + ", id=" + id + ", invHeaderId=" + invHeaderId
+				+ ", invoiceDetailDto=" + invoiceDetailDto + ", invoiceItemId=" + invoiceItemId + ", invoicePONumber="
+				+ invoicePONumber + ", lineNo=" + lineNo + ", matchingPonumber=" + matchingPonumber + ", material="
+				+ material + ", materialDescription=" + materialDescription + ", materialLine=" + materialLine
+				+ ", mode=" + mode + ", netPrice=" + netPrice + ", netWorth=" + netWorth + ", nonpoList=" + nonpoList
+				+ ", partialPost=" + partialPost + ", poMatchingItemNoId=" + poMatchingItemNoId + ", poMatchingNoId="
+				+ poMatchingNoId + ", poNumber=" + poNumber + ", poPrice=" + poPrice + ", poQuantity=" + poQuantity
+				+ ", poUpcCode=" + poUpcCode + ", quantity=" + quantity + ", quantityBaseUom=" + quantityBaseUom
+				+ ", quantityMismatchFlag=" + quantityMismatchFlag + ", requestId=" + requestId
+				+ ", threewayMatchingFlag=" + threewayMatchingFlag + ", twowayMatchingFlag=" + twowayMatchingFlag
+				+ ", unitPrice=" + unitPrice + ", unitPriceMismatchFlag=" + unitPriceMismatchFlag + ", uom=" + uom
+				+ ", upcCode=" + upcCode + ", upscMismatchFlag=" + upscMismatchFlag + ", userCreated=" + userCreated
+				+ ", userUpdated=" + userUpdated + ", vatValue=" + vatValue + ", vendorMaterialId=" + vendorMaterialId
+				+ "]";
+	}
 
 	public static Comparator<InvoiceItemDto> sortAscending = new Comparator<InvoiceItemDto>() {
 		public int compare(InvoiceItemDto s1, InvoiceItemDto s2) {

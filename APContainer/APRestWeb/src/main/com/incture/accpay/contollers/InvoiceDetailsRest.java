@@ -8,6 +8,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.incture.accpay.dto.InvoiceDetailDto;
 import com.incture.accpay.response.dto.InvoiceDetailResponseDTO;
 import com.incture.accpay.services.InvoiceDetailServicesLocal;
@@ -17,17 +20,19 @@ public class InvoiceDetailsRest {
 
 	@EJB
 	InvoiceDetailServicesLocal invoiceDetailServicesLocal;
+    private static final Logger LOGGER = LoggerFactory.getLogger(InvoiceDetailsRest.class);
+
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public InvoiceDetailResponseDTO getAllPersons() {
+	public InvoiceDetailResponseDTO getAllInvoiceData() {
 		return invoiceDetailServicesLocal.getAllInvoiceData();
 
 	}
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	public InvoiceDetailResponseDTO savePerson(InvoiceDetailDto invoiceDetailDto) {
+	public InvoiceDetailResponseDTO saveInvoiceDetails(InvoiceDetailDto invoiceDetailDto) {
 		return invoiceDetailServicesLocal.saveInvoiceDetails(invoiceDetailDto);
 	}
 
