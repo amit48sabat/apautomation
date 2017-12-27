@@ -8,6 +8,7 @@ import javax.persistence.Query;
 
 import com.incture.accpay.dto.GrnDto;
 import com.incture.accpay.dto.GrnItemDto;
+import com.incture.accpay.dto.GrnItemTotalDto;
 import com.incture.accpay.entities.GrnDo;
 import com.incture.accpay.entities.GrnItemDo;
 import com.incture.accpay.exception.ExecutionFault;
@@ -95,18 +96,20 @@ public class GrnDao extends BaseDao<GrnDo, GrnDto> {
 					GrnDto grndto = new GrnDto();
 					grndto.setId(grnDo.getId());
 					grndto = grnDao.getByKeys(grndto);
+					
+					GrnItemsTotalDao grnItemsTotalDao = new GrnItemsTotalDao(super.getEntityManager());
+					List<GrnItemTotalDto> grnItemTotalsList = grnItemsTotalDao.getByHeaderId(grndto.getId());
+					grndto.setGrnItemTotalList(grnItemTotalsList);
+					
 					grnDtoList.add(grndto);
-					// grndto = grnDao.exportDto(grnDoList.get(0));
 				}
 			}
+			
 		} catch (ExecutionFault e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (InvalidInputFault e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (NoResultFault e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return grnDtoList;

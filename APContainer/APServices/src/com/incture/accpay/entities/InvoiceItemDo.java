@@ -6,19 +6,24 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "AP_INVOICE_LINE_ITEMS")
+@TableGenerator(name="AP_INVOICE_LINE_ITEMS_GEN", initialValue=1, allocationSize=50)
+
 public class InvoiceItemDo implements BaseDo, Serializable {
 	public static final long serialVersionUID = -2422408359198939060L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.TABLE, generator="AP_INVOICE_LINE_ITEMS_GEN")
 	@Column(name = "ID", length = 40, nullable = false)
 	private String id;
 
@@ -97,10 +102,6 @@ public class InvoiceItemDo implements BaseDo, Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "UPDATED_BY")
 	private Date userUpdated;
-
-	@ManyToOne
-	@JoinColumn(name = "INV_HEADER_ID")
-	private InvoiceDetailDo invoiceDetailDo;
 
 	@Column(name = "UNIT_PRICE_MISMATCH")
 	private int unitPriceMismatchFlag = 0;
@@ -353,13 +354,7 @@ public class InvoiceItemDo implements BaseDo, Serializable {
 		this.comment = comment;
 	}
 
-	public InvoiceDetailDo getInvoiceDetailDo() {
-		return invoiceDetailDo;
-	}
 
-	public void setInvoiceDetailDo(InvoiceDetailDo invoiceDetailDo) {
-		this.invoiceDetailDo = invoiceDetailDo;
-	}
 
 	@Override
 	public Object getPrimaryKey() {

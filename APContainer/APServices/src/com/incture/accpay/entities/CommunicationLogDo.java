@@ -5,20 +5,25 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 
 @Entity
 @Table(name="AP_COMMENTS")
+@TableGenerator(name="COMM_LOG_GEN", initialValue=1, allocationSize=50)
 public class CommunicationLogDo implements BaseDo,Serializable{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 315547007043398221L;
 	@Id
+	 @GeneratedValue(strategy=GenerationType.TABLE, generator="COMM_LOG_GEN")
 	@Column(name="ID", length=40)
 	private String id;
 	

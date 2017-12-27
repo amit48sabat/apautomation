@@ -77,5 +77,14 @@ version="3.1">
 		<local>com.incture.accpay.services.InvoiceDetailServicesLocal</local>
 	</ejb-local-ref> 
 	
-  
+	<ejb-local-ref>
+		<ejb-ref-name>PO_GRN_PIServiceLocal</ejb-ref-name>
+		<ejb-ref-type>Session</ejb-ref-type>
+		<local>com.incture.accpay.services.PO_GRN_PIServiceLocal</local>
+	</ejb-local-ref> 
+	<ejb-local-ref>
+		<ejb-ref-name>PiServiceBeanLocal</ejb-ref-name>
+		<ejb-ref-type>Session</ejb-ref-type>
+		<local>com.incture.accpay.services.PiServiceBeanLocal</local>
+	</ejb-local-ref> 
 </web-app>

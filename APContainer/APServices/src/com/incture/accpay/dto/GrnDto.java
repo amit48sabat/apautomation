@@ -4,10 +4,12 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 import com.incture.accpay.exception.InvalidInputFault;
 import com.incture.accpay.util.EnOperation;
 import com.incture.accpay.util.ServicesUtil;
-
+@XmlRootElement
 public class GrnDto extends BaseDto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -26,18 +28,18 @@ public class GrnDto extends BaseDto implements Serializable {
 	
 	private String updatedBy;
 
-	private List<GrnItemDto> grnItemList;
+	private List<GrnItemDto> grnItemUIList;
 
-	private List<GrnItemTotalDto> grnItemTotalList;
+	private List<GrnItemTotalDto> grnItemTotalUIList;
 
 	private boolean deleted;
 
 	public List<GrnItemTotalDto> getGrnItemTotalList() {
-		return grnItemTotalList;
+		return grnItemTotalUIList;
 	}
 
 	public void setGrnItemTotalList(List<GrnItemTotalDto> grnItemTotalList) {
-		this.grnItemTotalList = grnItemTotalList;
+		this.grnItemTotalUIList = grnItemTotalList;
 	}
 
 	public String getCreatedBy() {
@@ -49,11 +51,11 @@ public class GrnDto extends BaseDto implements Serializable {
 	}
 
 	public List<GrnItemDto> getGrnItemList() {
-		return grnItemList;
+		return grnItemUIList;
 	}
 
 	public void setGrnItemList(List<GrnItemDto> grnItemList) {
-		this.grnItemList = grnItemList;
+		this.grnItemUIList = grnItemList;
 	}
 
 	public String getPoNumber() {
@@ -132,7 +134,7 @@ public class GrnDto extends BaseDto implements Serializable {
 	public String toString() {
 		return "GrnDto [createdBy=" + createdBy + ", createdDate="
 				+ createdDate + ", deleted=" + deleted + ", grnItemList="
-				+ grnItemList + ", grnItemTotalList=" + grnItemTotalList
+				+ grnItemUIList + ", grnItemTotalList=" + grnItemTotalUIList
 				+ ", id=" + id + ", poNumber=" + poNumber + ", requestId="
 				+ requestId + ", updatedBy=" + updatedBy + ", updatedDate="
 				+ updatedDate + "]";

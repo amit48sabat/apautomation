@@ -77,13 +77,12 @@ public class InvoiceDetailDao extends BaseDao<InvoiceDetailDo, InvoiceDetailDto>
 		outputDo.setUserUpdated(inputDto.getUserUpdated());
 		outputDo.setDateCreated(inputDto.getDateCreated());
 		outputDo.setDateUpdated(inputDto.getDateUpdated());
+		outputDo.setSapInvoiceNumber(inputDto.getSapInvoiceNumber());
 		if (!ServicesUtil.isEmpty(inputDto.getInvoiceItemList())) {
 			List<InvoiceItemDo> doList = new ArrayList<InvoiceItemDo>();
 			InvoiceItemDao dao = new InvoiceItemDao(super.getEntityManager());
-			for (int i = 0; i < inputDto.getInvoiceItemList().size(); i++) {
-				InvoiceItemDo importDo = dao.importDto(inputDto.getInvoiceItemList().get(i));
-				importDo.setInvoiceDetailDo(outputDo);
-				doList.add(importDo);
+			for (InvoiceItemDto invoiceItemDto : inputDto.getInvoiceItemList()) {
+				doList.add(dao.importDto(invoiceItemDto));
 			}
 			outputDo.setInvoiceItemDo(doList);
 		}
@@ -152,11 +151,13 @@ public class InvoiceDetailDao extends BaseDao<InvoiceDetailDo, InvoiceDetailDto>
 		outputDto.setUserUpdated(inputDo.getUserUpdated());
 		outputDto.setDateCreated(inputDo.getDateCreated());
 		outputDto.setDateUpdated(inputDo.getDateUpdated());
+		outputDto.setSapInvoiceNumber(inputDo.getSapInvoiceNumber());
+
 		if (!ServicesUtil.isEmpty(inputDo.getInvoiceItemDo())) {
 			List<InvoiceItemDto> invItemList = new ArrayList<InvoiceItemDto>(inputDo.getInvoiceItemDo().size());
 			InvoiceItemDao dao = new InvoiceItemDao(super.getEntityManager());
-			for (int i = 0; i < inputDo.getInvoiceItemDo().size(); i++) {
-				invItemList.add(dao.exportDto(inputDo.getInvoiceItemDo().get(i)));
+			for (InvoiceItemDo invoiceItemDo : inputDo.getInvoiceItemDo()) {
+				invItemList.add(dao.exportDto(invoiceItemDo));
 			}
 			outputDto.setInvoiceItemList(invItemList);
 		}
@@ -176,7 +177,7 @@ public class InvoiceDetailDao extends BaseDao<InvoiceDetailDo, InvoiceDetailDto>
 	public InvoiceDetailDto getInvDetailRequestNumber(@WebParam(name = "requestID") String requestID) {
 
 		InvoiceDetailDto invDto = new InvoiceDetailDto();
-		javax.persistence.Query query = super.getEntityManager()
+		Query query = super.getEntityManager()
 				.createQuery("select v from InvoiceDetailDo v where v.requestId=:requestID");
 		query.setParameter("requestID", requestID);
 

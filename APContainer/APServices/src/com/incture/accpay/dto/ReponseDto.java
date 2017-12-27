@@ -13,7 +13,7 @@ public class ReponseDto {
 	private String statusCode;
 	private String invoiceTotal;
 	private String vendorName;
-	private Date createdDate;
+	private Date createdDate = new Date();
 	private String invoiceDate;
 
 	public String getInvoiceDate() {

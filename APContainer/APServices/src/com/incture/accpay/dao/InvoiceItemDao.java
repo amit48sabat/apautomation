@@ -126,7 +126,7 @@ public class InvoiceItemDao extends BaseDao<InvoiceItemDo, InvoiceItemDto> {
 	@SuppressWarnings("unchecked")
 	public List<String> getPonumberList(String requestId) {
 		List<String> poNumbers = new ArrayList<String>();
-		Query query = super.getEntityManager().createQuery("SELECT DISTINCT v.invoicePONumber FROM InvoiceItemDo v WHERE v.requestId =:requestID");
+		Query query = super.getEntityManager().createQuery("SELECT  v.invoiceItemDo.invoiceNumber FROM InvoiceDetailDo v WHERE v.id =:requestID");
 		// Query query = super
 		// .getEntityManager()
 		// .createQuery(

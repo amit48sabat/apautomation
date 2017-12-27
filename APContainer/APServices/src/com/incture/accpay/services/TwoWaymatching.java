@@ -9,7 +9,7 @@ import javax.persistence.EntityManager;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.incture.accpay.dto.AccountPayResponseDto;
+import com.incture.accpay.dto.AccountPayDto;
 import com.incture.accpay.dto.GrnDto;
 import com.incture.accpay.dto.GrnItemDto;
 import com.incture.accpay.dto.GrnItemTotalDto;
@@ -31,14 +31,14 @@ public class TwoWaymatching {
 	/** STEP 3 : Matching on Master Material */
 	/** STEP 4 : Match based on description */
 	/** STEP 5 : Match based on position and Item ID */
-	public void doTwoWayMatch(AccountPayResponseDto request) {
+	public void doTwoWayMatch(AccountPayDto request) {
 		// logger.logDebug("[AP][TwoWaymatching][ doTwoWayMatch ] Started ");
 		try {
 			// Prerequisite, for later
 			// Map<String, BigDecimal> map = getPoItemGrnMap(request);
 			// List<PurchaseOrderUIDto> poList = request
 			// .getPurchaseOrderUIDtoList();
-			List<InvoiceItemDto> invoiceProcessList = request.getDetailDto().getInvoiceItemList();
+			List<InvoiceItemDto> invoiceProcessList = request.getInvoiceDetailUIDto().getInvoiceItemList();
 			if (!ServicesUtil.isEmpty(invoiceProcessList)) {
 				// finalList = new ArrayList<InvoiceItemUIDto>();
 
@@ -61,8 +61,8 @@ public class TwoWaymatching {
 	}
 
 	// Matching Invoice Material ID with PO Vendor Mat ID
-	private void doMatchingOnVendorMat(AccountPayResponseDto request, List<InvoiceItemDto> invoiceItemList) {
-		List<PurchaseOrderDto> poList = request.getPurchaseOrderDtos();
+	private void doMatchingOnVendorMat(AccountPayDto request, List<InvoiceItemDto> invoiceItemList) {
+		List<PurchaseOrderDto> poList = request.getPurchaseOrderUIDtoList();
 		// AppPropsRespDto appResponse = props.readAppProperties();
 
 		for (int invoiceItemIndex = 0; invoiceItemIndex < invoiceItemList.size(); invoiceItemIndex++) {
@@ -118,9 +118,9 @@ public class TwoWaymatching {
 	}
 
 	// Matching UPC Master Material with PO Material
-	private void doMatchingOnMaterial(AccountPayResponseDto request, List<InvoiceItemDto> invoiceItemList) {
+	private void doMatchingOnMaterial(AccountPayDto request, List<InvoiceItemDto> invoiceItemList) {
 
-		List<PurchaseOrderDto> poList = request.getPurchaseOrderDtos();
+		List<PurchaseOrderDto> poList = request.getPurchaseOrderUIDtoList();
 
 		// AppPropsRespDto appResponse = props.readAppProperties();
 
@@ -168,9 +168,9 @@ public class TwoWaymatching {
 	}
 
 	// Matching Invoice Article ID with PO UPC Code
-	private void doMatchingOnUPC(AccountPayResponseDto request, List<InvoiceItemDto> invoiceItemList) {
+	private void doMatchingOnUPC(AccountPayDto request, List<InvoiceItemDto> invoiceItemList) {
 
-		List<PurchaseOrderDto> poList = request.getPurchaseOrderDtos();
+		List<PurchaseOrderDto> poList = request.getPurchaseOrderUIDtoList();
 
 		for (int invoiceItemIdx = 0; invoiceItemIdx < invoiceItemList.size(); invoiceItemIdx++) {
 			Double maxPercent = 70.0; // FIXME: Remove hardcode
@@ -216,9 +216,9 @@ public class TwoWaymatching {
 	}
 
 	// Matching on Invoice Description with Po Description
-	private void doMatchingOnDescription(AccountPayResponseDto request, List<InvoiceItemDto> invoiceItemList) {
+	private void doMatchingOnDescription(AccountPayDto request, List<InvoiceItemDto> invoiceItemList) {
 
-		List<PurchaseOrderDto> poList = request.getPurchaseOrderDtos();
+		List<PurchaseOrderDto> poList = request.getPurchaseOrderUIDtoList();
 
 		for (int invoiceItemIdx = 0; invoiceItemIdx < invoiceItemList.size(); invoiceItemIdx++) {
 			Double maxPercent = 70.0; // FIXME: Remove hardcode
@@ -259,9 +259,9 @@ public class TwoWaymatching {
 	}
 
 	// Matching on Invoice Positon with Po Item ID
-	private void doMatchingOnPositon(AccountPayResponseDto request, List<InvoiceItemDto> invoiceItemList) {
+	private void doMatchingOnPositon(AccountPayDto request, List<InvoiceItemDto> invoiceItemList) {
 
-		List<PurchaseOrderDto> poList = request.getPurchaseOrderDtos();
+		List<PurchaseOrderDto> poList = request.getPurchaseOrderUIDtoList();
 
 		for (int invoiceItemIdx = 0; invoiceItemIdx < invoiceItemList.size(); invoiceItemIdx++) {
 			Double maxPercent = 100.0; // FIXME: Remove hardcode
@@ -314,11 +314,11 @@ public class TwoWaymatching {
 	 * @return
 	 */
 	@SuppressWarnings("unused")
-	private Map<String, BigDecimal> getPoItemGrnMap(AccountPayResponseDto request) {
+	private Map<String, BigDecimal> getPoItemGrnMap(AccountPayDto request) {
 		// Map<String, BigDecimal> map = new HashMap<String, BigDecimal>();
 		/** For FD there will always be GR based Invoice */
 		// if (request.getPurchaseOrderUIDtoList().get(0).getHas_Gr()) {
-		List<GrnDto> grnList = request.getGrnDtos();
+		List<GrnDto> grnList = request.getGrnUIDtoList();
 		Map<String, BigDecimal> map = new HashMap<String, BigDecimal>();
 		if (!ServicesUtil.isEmpty(grnList)) {
 			for (GrnDto grnUIDto : grnList) {
@@ -366,13 +366,13 @@ public class TwoWaymatching {
 
 	}
 
-	private void setDiscrepancy(AccountPayResponseDto request, int invoiceItemIndx, int matchPoIndex,
+	private void setDiscrepancy(AccountPayDto request, int invoiceItemIndx, int matchPoIndex,
 			int matchPoItemIndex) {
 		//logger.logDebug("[AP][TwoWaymatching][setDiscrepancy]");
 		// Set Two way match Flag
-		InvoiceItemDto invoiceItemUIDto = request.getDetailDto().getInvoiceItemList().get(invoiceItemIndx);
-		PurchaseOrderDto purchaseOrder = request.getPurchaseOrderDtos().get(matchPoIndex);
-		PoItemDto poItem = request.getPurchaseOrderDtos().get(matchPoIndex).getPoItemList()
+		InvoiceItemDto invoiceItemUIDto = request.getInvoiceDetailUIDto().getInvoiceItemList().get(invoiceItemIndx);
+		PurchaseOrderDto purchaseOrder = request.getPurchaseOrderUIDtoList().get(matchPoIndex);
+		PoItemDto poItem = request.getPurchaseOrderUIDtoList().get(matchPoIndex).getPoItemList()
 				.get(matchPoItemIndex);
 
 		invoiceItemUIDto.setTwowayMatchingFlag(true);
@@ -405,8 +405,8 @@ public class TwoWaymatching {
 		}
 		invoiceItemUIDto.setPoHeaderId(purchaseOrder.getId());
 
-		if (!ServicesUtil.isEmpty(request.getGrnDtos())) {
-			for (GrnDto grnUIDto : request.getGrnDtos()) {
+		if (!ServicesUtil.isEmpty(request.getGrnUIDtoList())) {
+			for (GrnDto grnUIDto : request.getGrnUIDtoList()) {
 				for (int i = 0; i < ServicesUtil.nullHandler(grnUIDto.getGrnItemTotalList()); i++) {
 					GrnItemTotalDto grnItemTotalUIDto = grnUIDto.getGrnItemTotalList().get(i);
 					if (grnItemTotalUIDto.getPoItem().equals(invoiceItemUIDto.getPoMatchingItemNoId())) {

@@ -7,10 +7,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Class holding information on a person.
  */
+@XmlRootElement
 @Entity
 @Table(name = "T_PERSONS")
 @NamedQuery(name = "AllPersons", query = "select p from Person p")

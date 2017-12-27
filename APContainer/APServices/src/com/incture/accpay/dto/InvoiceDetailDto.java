@@ -32,6 +32,8 @@ public class InvoiceDetailDto extends BaseDto implements Serializable {
 	private String id;
 
 	private String invoiceNumber;
+	
+	private String sapInvoiceNumber;
 
 	private java.util.Date postingDate;
 
@@ -523,6 +525,14 @@ public class InvoiceDetailDto extends BaseDto implements Serializable {
 
 	public void setCommunicationLogDtos(List<CommunicationLogDto> communicationLogDtos) {
 		this.communicationLogDtos = communicationLogDtos;
+	}
+
+	public String getSapInvoiceNumber() {
+		return sapInvoiceNumber;
+	}
+
+	public void setSapInvoiceNumber(String sapInvoiceNumber) {
+		this.sapInvoiceNumber = sapInvoiceNumber;
 	}
 
 	public void validate(EnOperation operation) throws InvalidInputFault {

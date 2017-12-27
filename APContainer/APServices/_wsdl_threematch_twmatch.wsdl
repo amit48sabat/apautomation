@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="urn:CW:AccountsPayable" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:p1="urn:CW:AccountsPayable" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+  <wsdl:types>
+    <xsd:schema targetNamespace="urn:CW:AccountsPayable" xmlns="urn:CW:AccountsPayable" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:element name="ThreeWay_Matching_Request" type="ThreeWay_Matching_Request"/>
+            <xsd:element name="ThreeWay_Matching_Response" type="ThreeWay_Matching_Response"/>
+            <xsd:complexType name="ThreeWay_Matching_Request">
+                <xsd:annotation>
+                    <xsd:appinfo source="http://sap.com/xi/VersionID">6f3fc7d0db4511e793810000007c8652</xsd:appinfo>
+                </xsd:annotation>
+                <xsd:sequence>
+                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="Items">
+                        <xsd:annotation>
+                            <xsd:appinfo source="http://sap.com/xi/TextID">a63bbc1f57b511e6ac709cd21e7a5e51</xsd:appinfo>
+                        </xsd:annotation>
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element minOccurs="0" name="POITEM_CONV_NUM1" type="xsd:decimal">
+                                    <xsd:annotation>
+                                    <xsd:appinfo source="http://sap.com/xi/TextID">a63b808957b511e6b2bb9cd21e7a5e51</xsd:appinfo>
+                                    </xsd:annotation>
+                                </xsd:element>
+                                <xsd:element minOccurs="0" name="POITEM_CONV_DEN1" type="xsd:decimal">
+                                    <xsd:annotation>
+                                    <xsd:appinfo source="http://sap.com/xi/TextID">a63b808a57b511e6a5359cd21e7a5e51</xsd:appinfo>
+                                    </xsd:annotation>
+                                </xsd:element>
+                                <xsd:element minOccurs="0" name="POITEM_QUANTITY" type="xsd:decimal">
+                                    <xsd:annotation>
+                                    <xsd:appinfo source="http://sap.com/xi/TextID">a63b808b57b511e69aa29cd21e7a5e51</xsd:appinfo>
+                                    </xsd:annotation>
+                                </xsd:element>
+                                <xsd:element minOccurs="0" name="Posting_Date" type="xsd:string">
+                                    <xsd:annotation>
+                                    <xsd:appinfo source="http://sap.com/xi/TextID">a63b808c57b511e6bb609cd21e7a5e51</xsd:appinfo>
+                                    </xsd:annotation>
+                                </xsd:element>
+                                <xsd:element minOccurs="0" name="POHEADER_COMP_CODE" type="xsd:string">
+                                    <xsd:annotation>
+                                    <xsd:appinfo source="http://sap.com/xi/TextID">a63b808d57b511e6b7a39cd21e7a5e51</xsd:appinfo>
+                                    </xsd:annotation>
+                                </xsd:element>
+                                <xsd:element minOccurs="0" name="INVOICE_QUANTITY" type="xsd:decimal">
+                                    <xsd:annotation>
+                                    <xsd:appinfo source="http://sap.com/xi/TextID">26b1d0c957b711e6ce269cd21e7a5e51</xsd:appinfo>
+                                    </xsd:annotation>
+                                </xsd:element>
+                                <xsd:element minOccurs="0" name="POHISTORY_MAT_DOC" type="xsd:string">
+                                    <xsd:annotation>
+                                    <xsd:appinfo source="http://sap.com/xi/TextID">a63b808e57b511e6c6bb9cd21e7a5e51</xsd:appinfo>
+                                    </xsd:annotation>
+                                </xsd:element>
+                                <xsd:element minOccurs="0" name="NET_WORTH" type="xsd:decimal">
+                                    <xsd:annotation>
+                                    <xsd:appinfo source="http://sap.com/xi/TextID">2db6470657b811e6a5c89cd21e7a5e51</xsd:appinfo>
+                                    </xsd:annotation>
+                                </xsd:element>
+                                <xsd:element minOccurs="0" name="POITEM_ITEM_CAT" type="xsd:string">
+                                    <xsd:annotation>
+                                    <xsd:appinfo source="http://sap.com/xi/TextID">a63b808f57b511e685339cd21e7a5e51</xsd:appinfo>
+                                    </xsd:annotation>
+                                </xsd:element>
+                                <xsd:element minOccurs="0" name="POHISTORY_TOTALS_IV_QTY" type="xsd:decimal">
+                                    <xsd:annotation>
+                                    <xsd:appinfo source="http://sap.com/xi/TextID">a63b809057b511e6b2449cd21e7a5e51</xsd:appinfo>
+                                    </xsd:annotation>
+                                </xsd:element>
+                                <xsd:element minOccurs="0" name="DR_CR_INDICATOR" type="xsd:string">
+                                    <xsd:annotation>
+                                    <xsd:appinfo source="http://sap.com/xi/TextID">2db6470757b811e692b19cd21e7a5e51</xsd:appinfo>
+                                    </xsd:annotation>
+                                </xsd:element>
+                                <xsd:element minOccurs="0" name="POHEADER_CURRENCY" type="xsd:string">
+                                    <xsd:annotation>
+                                    <xsd:appinfo source="http://sap.com/xi/TextID">a63bbc1a57b511e6bdab9cd21e7a5e51</xsd:appinfo>
+                                    </xsd:annotation>
+                                </xsd:element>
+                                <xsd:element minOccurs="0" name="POHISTORY_TOTALS_DELIV_QTY" type="xsd:decimal">
+                                    <xsd:annotation>
+                                    <xsd:appinfo source="http://sap.com/xi/TextID">a63bbc1b57b511e6a1b39cd21e7a5e51</xsd:appinfo>
+                                    </xsd:annotation>
+                                </xsd:element>
+                                <xsd:element minOccurs="0" name="GOODS_REC_INDICATOR" type="xsd:string">
+                                    <xsd:annotation>
+                                    <xsd:appinfo source="http://sap.com/xi/TextID">2db6470857b811e6c41d9cd21e7a5e51</xsd:appinfo>
+                                    </xsd:annotation>
+                                </xsd:element>
+                                <xsd:element minOccurs="0" name="POHISTORY_TOTALS_PO_PR_QNT" type="xsd:decimal">
+                                    <xsd:annotation>
+                                    <xsd:appinfo source="http://sap.com/xi/TextID">a63bbc1c57b511e6b61f9cd21e7a5e51</xsd:appinfo>
+                                    </xsd:annotation>
+                                </xsd:element>
+                                <xsd:element minOccurs="0" name="POHISTORY_TOTALS_VAL_IV_FOR" type="xsd:decimal">
+                                    <xsd:annotation>
+                                    <xsd:appinfo source="http://sap.com/xi/TextID">a63bbc1d57b511e6bd4a9cd21e7a5e51</xsd:appinfo>
+                                    </xsd:annotation>
+                                </xsd:element>
+                                <xsd:element minOccurs="0" name="DOC_AMOUNT_CURRENCY" type="xsd:decimal">
+                                    <xsd:annotation>
+                                    <xsd:appinfo source="http://sap.com/xi/TextID">2db6470957b811e681f89cd21e7a5e51</xsd:appinfo>
+                                    </xsd:annotation>
+                                </xsd:element>
+                                <xsd:element minOccurs="0" name="PO_NUMBER" type="xsd:string">
+                                    <xsd:annotation>
+                                    <xsd:appinfo source="http://sap.com/xi/TextID">4fc2ebe757d111e6b4369cd21e7a5e51</xsd:appinfo>
+                                    </xsd:annotation>
+                                </xsd:element>
+                                <xsd:element minOccurs="0" name="PO_ITEM_ID" type="xsd:string">
+                                    <xsd:annotation>
+                                    <xsd:appinfo source="http://sap.com/xi/TextID">4fc2ebe857d111e69ff49cd21e7a5e51</xsd:appinfo>
+                                    </xsd:annotation>
+                                </xsd:element>
+                                <xsd:element minOccurs="0" name="POHISTORY_TOTALS_VAL_GR_FOR" type="xsd:decimal">
+                                    <xsd:annotation>
+                                    <xsd:appinfo source="http://sap.com/xi/TextID">a63bbc1e57b511e6c9a19cd21e7a5e51</xsd:appinfo>
+                                    </xsd:annotation>
+                                </xsd:element>
+                            </xsd:sequence>
+                        </xsd:complexType>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="ThreeWay_Matching_Response">
+                <xsd:annotation>
+                    <xsd:appinfo source="http://sap.com/xi/VersionID">6f520b18db4511e7c6780000007c8652</xsd:appinfo>
+                </xsd:annotation>
+                <xsd:sequence>
+                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="ITEMS">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element minOccurs="0" name="PONUMBER" type="xsd:string"/>
+                                <xsd:element minOccurs="0" name="POITEM_ID" type="xsd:string"/>
+                                <xsd:element minOccurs="0" name="MESSAGE" type="xsd:string"/>
+                            </xsd:sequence>
+                        </xsd:complexType>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+        </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ThreeWay_Matching_Response">
+<wsdl:documentation/>
+    <wsdl:part name="ThreeWay_Matching_Response" element="p1:ThreeWay_Matching_Response">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ThreeWay_Matching_Request">
+<wsdl:documentation/>
+    <wsdl:part name="ThreeWay_Matching_Request" element="p1:ThreeWay_Matching_Request">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ThreeWay_Matching_Request_Sync_Out">
+<wsdl:documentation/>
+    <wsdl:operation name="ThreeWay_Matching_Request_Sync_Out">
+<wsdl:documentation/>
+      <wsdl:input message="p1:ThreeWay_Matching_Request">
+    </wsdl:input>
+      <wsdl:output message="p1:ThreeWay_Matching_Response">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ThreeWay_Matching_Request_Sync_OutBinding" type="p1:ThreeWay_Matching_Request_Sync_Out">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsp:Policy>
+            <wsp:PolicyReference URI="#BN__binding"/>
+        </wsp:Policy>
+    <wsdl:operation name="ThreeWay_Matching_Request_Sync_Out">
+      <soap:operation soapAction="http://sap.com/xi/WebService/soap1.1"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ThreeWay_Matching_Request_Sync_OutService">
+    <wsdl:port name="HTTP_Port" binding="p1:ThreeWay_Matching_Request_Sync_OutBinding">
+      <soap:address location="https://p1015-iflmap.hcisbp.ap1.hana.ondemand.com:443/cxf/twmatch"/>
+    </wsdl:port>
+  </wsdl:service>
+    <wsp:UsingPolicy required="true"/>
+    <wsp:Policy wsu:Id="BN__binding">
+        <wsp:ExactlyOne>
+            <wsp:All>
+                <sp:TransportBinding xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+                    <wsp:Policy>
+                        <sp:TransportToken>
+                            <wsp:Policy>
+                                <sp:HttpsToken>
+                                    <wsp:Policy>
+                                    <wsp:ExactlyOne>
+                                    <sp:HttpBasicAuthentication/>
+                                    <sp:RequireClientCertificate/>
+                                    </wsp:ExactlyOne>
+                                    </wsp:Policy>
+                                </sp:HttpsToken>
+                            </wsp:Policy>
+                        </sp:TransportToken>
+                        <sp:AlgorithmSuite>
+                            <wsp:Policy>
+                                <wsp:ExactlyOne>
+                                    <sp:Basic256/>
+                                    <sp:Basic192/>
+                                    <sp:Basic128/>
+                                    <sp:TripleDes/>
+                                    <sp:Basic256Rsa15/>
+                                    <sp:Basic192Rsa15/>
+                                    <sp:Basic128Rsa15/>
+                                    <sp:TripleDesRsa15/>
+                                    <sp:Basic256Sha256/>
+                                    <sp:Basic192Sha256/>
+                                    <sp:Basic128Sha256/>
+                                    <sp:TripleDesSha256/>
+                                    <sp:Basic256Sha256Rsa15/>
+                                    <sp:Basic192Sha256Rsa15/>
+                                    <sp:Basic128Sha256Rsa15/>
+                                    <sp:TripleDesSha256Rsa15/>
+                                </wsp:ExactlyOne>
+                            </wsp:Policy>
+                        </sp:AlgorithmSuite>
+                        <sp:Layout>
+                            <wsp:Policy>
+                                <sp:Strict/>
+                            </wsp:Policy>
+                        </sp:Layout>
+                    </wsp:Policy>
+                </sp:TransportBinding>
+            </wsp:All>
+        </wsp:ExactlyOne>
+    </wsp:Policy>
+</wsdl:definitions>

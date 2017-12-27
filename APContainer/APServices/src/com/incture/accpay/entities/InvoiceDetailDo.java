@@ -20,8 +20,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@TableGenerator(name="INV_DET_GEN", initialValue=1, allocationSize=50)
 @Table(name = "AP_INVOICE_DETAIL")
+
 public class InvoiceDetailDo implements BaseDo, Serializable {
 	public static final long serialVersionUID = -3248578168688762316L;
 
@@ -77,13 +77,18 @@ public class InvoiceDetailDo implements BaseDo, Serializable {
 	private String headerPatternMatchingFlag;
 
 	@Id
-	 @GeneratedValue(strategy=GenerationType.TABLE, generator="INV_DET_GEN")
 	@Column(name = "ID", length = 40, nullable = false)
 	private String id;
-
+	
+	
+	@Column(name = "TASK_STATUS", length = 30)
+	private String taskStatus;
 	
 	@Column(name = "INVOICE_NUMBER", length = 30)
 	private String invoiceNumber;
+	
+	@Column(name = "SAP_INVOICE_NUMBER", length = 30)
+	private String sapInvoiceNumber;
 
 	@Temporal(javax.persistence.TemporalType.TIMESTAMP)
 	@Column(name = "POSTING_DATE")
@@ -173,8 +178,7 @@ public class InvoiceDetailDo implements BaseDo, Serializable {
 	@Column(name = "UPDATED_BY")
 	private String userUpdated;
 	
-	@OneToMany(mappedBy = "invoiceDetailDo", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(referencedColumnName="id")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<InvoiceItemDo> invoiceItemDo;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -587,6 +591,22 @@ public class InvoiceDetailDo implements BaseDo, Serializable {
 
 	public void setProcessId(String processId) {
 		this.processId = processId;
+	}
+
+	public String getSapInvoiceNumber() {
+		return sapInvoiceNumber;
+	}
+
+	public void setSapInvoiceNumber(String sapInvoiceNumber) {
+		this.sapInvoiceNumber = sapInvoiceNumber;
+	}
+
+	public String getTaskStatus() {
+		return taskStatus;
+	}
+
+	public void setTaskStatus(String taskStatus) {
+		this.taskStatus = taskStatus;
 	}
 
 }

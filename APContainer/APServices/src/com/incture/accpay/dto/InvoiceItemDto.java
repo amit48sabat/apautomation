@@ -64,6 +64,8 @@ public class InvoiceItemDto extends BaseDto implements Serializable {
 	private BigDecimal poQuantity;
 
 	private String quantityBaseUom;
+	
+	private List<String> threeWayMatchText;
 
 	private int unitPriceMismatchFlag = 0;
 
@@ -608,6 +610,14 @@ public class InvoiceItemDto extends BaseDto implements Serializable {
 		matchingPonumber = checkStringSize("InvoiceItem.matchingPonumber", matchingPonumber, 10);
 		material = checkStringSize("InvoiceItem.material", material, 20);
 		VendorMaterial = checkStringSize("InvoiceItem.VendorMaterial", VendorMaterial, 100);
+	}
+
+	public List<String> getThreeWayMatchText() {
+		return threeWayMatchText;
+	}
+
+	public void setThreeWayMatchText(List<String> threeWayMatchText) {
+		this.threeWayMatchText = threeWayMatchText;
 	}
 
 	@Override

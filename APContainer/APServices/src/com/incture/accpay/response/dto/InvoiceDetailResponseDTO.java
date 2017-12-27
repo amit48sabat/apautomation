@@ -11,6 +11,7 @@ import com.incture.accpay.dto.InvoiceDetailDto;
 public class InvoiceDetailResponseDTO {
 	boolean Status;
 	String message;
+	String id;
 	List<InvoiceDetailDto> responseDTOs = new ArrayList<InvoiceDetailDto>();
 
 	public boolean isStatus() {
@@ -35,6 +36,14 @@ public class InvoiceDetailResponseDTO {
 
 	public void setResponseDTOs(List<InvoiceDetailDto> responseDTOs) {
 		this.responseDTOs = responseDTOs;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 }

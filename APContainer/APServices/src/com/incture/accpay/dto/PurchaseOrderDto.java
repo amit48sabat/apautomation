@@ -34,6 +34,7 @@ public class PurchaseOrderDto extends BaseDto implements Serializable {
 	private Date updatedDate;
 	private String CreatedBy;
 	private String updatedBy;
+	
 	private List<AccountAssignmentDto> accAssignDtoList; 
 	
 	public Boolean getHasDeliveryVendor() {
