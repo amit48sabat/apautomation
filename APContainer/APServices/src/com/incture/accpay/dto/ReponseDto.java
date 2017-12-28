@@ -15,6 +15,7 @@ public class ReponseDto {
 	private String vendorName;
 	private Date createdDate = new Date();
 	private String invoiceDate;
+	private String status;
 
 	public String getInvoiceDate() {
 		return invoiceDate;
@@ -78,5 +79,13 @@ public class ReponseDto {
 
 	public void setMessage(String message) {
 		this.message = message;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 }

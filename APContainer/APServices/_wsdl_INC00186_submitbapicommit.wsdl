@@ -495,7 +495,7 @@
   </wsdl:binding>
   <wsdl:service name="Po_Posting_Request_Synch_OutService">
     <wsdl:port name="HTTP_Port" binding="p1:Po_Posting_Request_Synch_OutBinding">
-      <soap:address location="https://p1015-iflmap.hcisbp.ap1.hana.ondemand.com:443/cxf/submitpandey"/>
+      <soap:address location="https://p1015-iflmap.hcisbp.ap1.hana.ondemand.com:443/cxf/submitbapicommit"/>
     </wsdl:port>
   </wsdl:service>
     <wsp:UsingPolicy required="true"/>

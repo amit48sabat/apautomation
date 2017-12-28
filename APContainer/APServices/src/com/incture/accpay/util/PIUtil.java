@@ -138,7 +138,7 @@ public class PIUtil {
 		return grnItemList;
 	}
 
-	public static ArrayList<ThreeWay_Matching_RequestItems> setThreewayRequest(AccountPayDto dto) {
+	public static ThreeWay_Matching_RequestItems[] setThreewayRequest(AccountPayDto dto) {
 
 		ArrayList<ThreeWay_Matching_RequestItems> threewayMatchingRequest = new ArrayList<ThreeWay_Matching_RequestItems>();
 
@@ -176,7 +176,7 @@ public class PIUtil {
 		// *** commented 2 way match
 		// List<InvoiceItemUIDto> invoice2WaySuccessList =
 		// getOnly2WaySuccessItems(invoiceList);
-
+		System.err.println("invoice list of two way match anbd gr :"+ invoiceList);
 		if (!ServicesUtil.isEmpty(invoiceList)) {
 			for (InvoiceItemDto item : invoiceList) {
 				if (item.isHasSomeGrFlag()) {
@@ -209,7 +209,8 @@ public class PIUtil {
 							// totalInvQty =
 							// totalInvQty.subtract(grnUIItem.getDelivQty());
 							totalInvQty = totalInvQty.subtract(grQty);
-
+							
+							System.err.println("grqty :"+grQty);
 							// // logger.logDebug("new totalInvQty " +
 							// totalInvQty);
 
@@ -245,6 +246,8 @@ public class PIUtil {
 								lineItem.setPOHISTORY_TOTALS_VAL_GR_FOR(grnUIItem.getCostForeignCurrency());
 								// // logger.logDebug("Item set is (at PIUtil@262)
 								// " + lineItem.toString());
+								
+								System.err.println("Three way match line item added :"+ lineItem);
 								threewayMatchingRequest.add(lineItem);
 							}
 						}
@@ -259,9 +262,12 @@ public class PIUtil {
 			}
 		}
 		// // logger.logDebug("[AP][PIUtil] no of three way match items set"+
-		// threewayMatchingRequest.getItems().size());
-		return threewayMatchingRequest;
-
+		ThreeWay_Matching_RequestItems items[] =new  ThreeWay_Matching_RequestItems[threewayMatchingRequest.size()];              
+		for(int i =0;i<threewayMatchingRequest.size();i++){
+			items[i] = threewayMatchingRequest.get(i);
+		}
+		
+		return items;
 	}
 
 	public static void setResponse(ThreeWay_Matching_ResponseITEMS[] response, AccountPayDto dto) {
@@ -446,7 +452,7 @@ public class PIUtil {
 		header.setREF_DOC_NO(accpayDto.getInvoiceDetailUIDto().getInvoiceNumber());
 		header.setGROSS_AMOUNT(gramount);
 		//logger.logDebug("amount that is set "+ gramount.toString());
-		header.setCALC_TAX_IND("X");
+//		header.setCALC_TAX_IND("X");
 //		header.setPMNTTRMS(accpayDto.getPurchaseOrderUIDtoList().get(0).getPaymentTerms());
 		header.setPMNTTRMS(accpayDto.getInvoiceDetailUIDto().getPaymentTerms()); 
 		
@@ -520,13 +526,10 @@ public class PIUtil {
 		List<InvoiceItemDto> list = new ArrayList<InvoiceItemDto>(ServicesUtil.nullHandler(invoiceList));
 		if(!ServicesUtil.isEmpty(invoiceList)){
 			for (InvoiceItemDto item : invoiceList) {
-				System.err.println(item);
-				//logger.logDebug("partial flag" + item.isPartialPosting() + " three way match flag " + item.getThreewayMatchingFlag());
 				if (!ServicesUtil.isEmpty(item)) 
-				//if (!ServicesUtil.isEmpty(item.getThreewayMatchingFlag()) /*&& item.isPartialPosting()*/ /*&& item.getThreewayMatchingFlag()*/ /*&& !item.getFreeItem()*/ && ServicesUtil.isFalse(item.isDeleted())) {
-					//logger.logDebug("line item added" + item.toString());
+				if (!ServicesUtil.isEmpty(item.getThreewayMatchingFlag()) && item.isPartialPosting() && item.getThreewayMatchingFlag() && !item.getFreeItem() && ServicesUtil.isFalse(item.isDeleted())) {
 					list.add(item);
-				//}
+				}
 			}
 		}
 		return list;
@@ -617,6 +620,8 @@ public class PIUtil {
 					gramount = gramount.add(lineItem.getITEM_AMOUNT());
 					data.setGramount(gramount);
 					data.setCount(count);
+					System.err.println("gross amount "+gramount+"line item added :+"+lineItem);
+					
 //					if(!ServicesUtil.isEmpty(item.getAccDtoList())){
 //						BigDecimal serialNo= new BigDecimal(0);
 //							for (AccountAssignmentUIDto accUIDto : item.getAccUIDtoList()) {

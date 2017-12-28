@@ -33,7 +33,6 @@ public class InvoiceItemDao extends BaseDao<InvoiceItemDo, InvoiceItemDto> {
 		outputDo.setMaterial(inputDto.getMaterial());
 		outputDo.setMaterialLine(inputDto.isMaterialLine());
 		outputDo.setNetWorth(inputDto.getNetWorth());
-		outputDo.setPartialPost(inputDto.isPartialPost());
 		outputDo.setPoUpcCode(inputDto.getPoUpcCode());
 		outputDo.setVendorMaterial(inputDto.getVendorMaterial());
 		outputDo.setInvoiceItemId(inputDto.getInvoiceItemId());
@@ -57,7 +56,7 @@ public class InvoiceItemDao extends BaseDao<InvoiceItemDo, InvoiceItemDto> {
 		outputDo.setUnitPriceMismatchFlag(inputDto.getUnitPriceMismatchFlag());
 		outputDo.setDescriptionMismatchFlag(inputDto.getDescriptionMismatchFlag());
 		outputDo.setQuantityMismatchFlag(inputDto.getQuantityMismatchFlag());
-		outputDo.setPartialPost(inputDto.isPartialPost());
+		outputDo.setPartialPost(inputDto.isPartialPosting());
 		outputDo.setAmountDifference(inputDto.getAmountDifference());
 		outputDo.setInvoicePONumber(inputDto.getInvoicePONumber());
 		outputDo.setDiscountValue(inputDto.getDiscountValue());
@@ -100,7 +99,6 @@ public class InvoiceItemDao extends BaseDao<InvoiceItemDo, InvoiceItemDto> {
 		outputDto.setDescriptionMismatchFlag(inputDo.getDescriptionMismatchFlag());
 		outputDto.setQuantityMismatchFlag(inputDo.getQuantityMismatchFlag());
 		outputDto.setUpscMismatchFlag(inputDo.getUpscMismatchFlag());
-		outputDto.setPartialPost(inputDo.isPartialPost());
 		outputDto.setAmountDifference(inputDo.getAmountDifference());
 		outputDto.setHasErrorFlag(inputDo.isHasErrorFlag());
 		outputDto.setHasSomeGrFlag(inputDo.isHasSomeGrFlag());
@@ -109,7 +107,7 @@ public class InvoiceItemDao extends BaseDao<InvoiceItemDo, InvoiceItemDto> {
 		outputDto.setVatValue(inputDo.getVatValue());
 		outputDto.setMaterialLine(inputDo.isMaterialLine());
 		outputDto.setNetWorth(inputDo.getNetWorth());
-		outputDto.setPartialPost(inputDo.isPartialPost());
+		outputDto.setPartialPosting(inputDo.isPartialPost());
 		outputDto.setPoUpcCode(inputDo.getPoUpcCode());
 		outputDto.setVendorMaterial(inputDo.getVendorMaterial());
 		outputDto.setRequestId(inputDo.getRequestId());

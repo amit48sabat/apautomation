@@ -97,8 +97,6 @@ public class InvoiceItemDto extends BaseDto implements Serializable {
 
 	private String invHeaderId;
 
-	private boolean partialPost;
-
 	private InvoiceDetailDto invoiceDetailDto;
 
 	private BigDecimal amountDifference;
@@ -254,13 +252,6 @@ public class InvoiceItemDto extends BaseDto implements Serializable {
 		this.descriptionMismatchFlag = descriptionMismatchFlag;
 	}
 
-	public boolean isPartialPost() {
-		return partialPost;
-	}
-
-	public void setPartialPost(boolean partialPost) {
-		this.partialPost = partialPost;
-	}
 
 	public InvoiceDetailDto getInvoiceDetailDto() {
 		return invoiceDetailDto;
@@ -631,7 +622,7 @@ public class InvoiceItemDto extends BaseDto implements Serializable {
 				+ invoicePONumber + ", lineNo=" + lineNo + ", matchingPonumber=" + matchingPonumber + ", material="
 				+ material + ", materialDescription=" + materialDescription + ", materialLine=" + materialLine
 				+ ", mode=" + mode + ", netPrice=" + netPrice + ", netWorth=" + netWorth + ", nonpoList=" + nonpoList
-				+ ", partialPost=" + partialPost + ", poMatchingItemNoId=" + poMatchingItemNoId + ", poMatchingNoId="
+				+ ", poMatchingItemNoId=" + poMatchingItemNoId + ", poMatchingNoId="
 				+ poMatchingNoId + ", poNumber=" + poNumber + ", poPrice=" + poPrice + ", poQuantity=" + poQuantity
 				+ ", poUpcCode=" + poUpcCode + ", quantity=" + quantity + ", quantityBaseUom=" + quantityBaseUom
 				+ ", quantityMismatchFlag=" + quantityMismatchFlag + ", requestId=" + requestId

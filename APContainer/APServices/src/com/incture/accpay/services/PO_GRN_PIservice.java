@@ -1,7 +1,6 @@
 package com.incture.accpay.services;
 
 import java.math.BigDecimal;
-
 import java.math.RoundingMode;
 import java.rmi.RemoteException;
 import java.text.DecimalFormat;
@@ -9,8 +8,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 
 import javax.ejb.LocalBean;
@@ -129,21 +130,25 @@ public class PO_GRN_PIservice implements PO_GRN_PIServiceLocal {
 		outputDto = new AccPayResponseDTO();
 
 		if (poNumber == null) {
-			List<String> poNumbers = new ArrayList<String>();
+			Set<String> poNumbers = new HashSet<String>();
 			for (InvoiceItemDto invoiceItemDto : invoiceDetailDto.getInvoiceItemList()) {
 				poNumbers.add(invoiceItemDto.getInvoicePONumber());
 			}
+			
 
 			if (ServicesUtil.nullHandler(poNumbers) < 1) {
 				return outputDto;
 			}
-			for (int i = 0; i < poNumbers.size(); i++) {
-				if (ServicesUtil.isEmpty(poNumbers.get(i)) || poNumbers.get(i).equals("0000000000")) {
-					continue;
+			if(poNumbers.size()>0){
+				for (String poNo : poNumbers) {
+					if (ServicesUtil.isEmpty(poNo) || poNo.equals("0000000000")) {
+						continue;
+					}
+//					poNumber = poNo;
+					storePORelatedData(invoiceDetailDto.getId(), poNo, outputDto);
 				}
-				poNumber = poNumbers.get(i);
-				storePORelatedData(invoiceDetailDto.getId(), poNumber, outputDto);
 			}
+			
 		} else {
 			storePORelatedData(invoiceDetailDto.getId(), poNumber, outputDto);
 		}

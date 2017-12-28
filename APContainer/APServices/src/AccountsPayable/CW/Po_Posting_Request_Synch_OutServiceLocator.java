@@ -22,7 +22,7 @@ public class Po_Posting_Request_Synch_OutServiceLocator extends org.apache.axis.
     }
 
     // Use to get a proxy class for HTTP_Port
-    private java.lang.String HTTP_Port_address = "https://p1015-iflmap.hcisbp.ap1.hana.ondemand.com:443/cxf/submitpandey";
+    private java.lang.String HTTP_Port_address = "https://p1015-iflmap.hcisbp.ap1.hana.ondemand.com:443/cxf/submitbapicommit";
 
     public java.lang.String getHTTP_PortAddress() {
         return HTTP_Port_address;
